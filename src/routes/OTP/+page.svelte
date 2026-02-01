@@ -1,10 +1,43 @@
 <script lang="ts">
+	import { alertStore } from '$lib/stores/alert-store.svelte';
+	import { stringify } from 'querystring';
+	import type { EventHandler } from 'svelte/elements';
+
 	const MAX_DIGIT = 6;
 
 	const otp = $state<(number | null)[]>(Array.from({ length: MAX_DIGIT }, () => null));
 	const inputs = $state<HTMLInputElement[]>([]);
 	let submitBtn = $state<HTMLButtonElement | null>(null);
 	let currentInputiIndex = 0;
+
+	type Data = {
+		success: boolean;
+		type: 'ERROR' | 'LOGIN_SUCCESS';
+		message: string;
+	};
+
+	const handleSubmit: EventHandler<SubmitEvent, HTMLFormElement> = async (e) => {
+		e.preventDefault();
+		try {
+			const response = await fetch('https://dev.xperia.top/v1/auth/login', {
+				body: JSON.stringify({
+					twoFactorCode: otp.join(''),
+					rememberMe: true
+				}),
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			});
+
+			const data = (await response.json()) as Data;
+
+			if (response.status === 400) {
+				alertStore.sendAlert('error', data.message);
+			}
+		} catch (_) {
+			alertStore.sendAlert('error', 'خطا در برقراری اتصال با سرور');
+		}
+	};
 </script>
 
 <main class="flex min-h-screen flex-col items-center justify-center">
@@ -12,7 +45,7 @@
 		<h2 class="text-2xl leading-none font-bold text-primary">خوش آمدید</h2>
 		<p>لطفاً کد تایید رو وارد کن!</p>
 	</div>
-	<form class="card w-96 bg-base-200 shadow-sm">
+	<form class="card w-96 bg-base-200 shadow-sm" onsubmit={handleSubmit}>
 		<div class="card-body">
 			<div class="card-actions justify-end gap-6">
 				<!-- svelte-ignore a11y_click_events_have_key_events -->
@@ -81,7 +114,13 @@
 </main>
 
 <style>
+	input::-webkit-outer-spin-button,
 	input::-webkit-inner-spin-button {
-		display: none;
+		-webkit-appearance: none;
+		margin: 0;
+	}
+
+	input[type='number'] {
+		-moz-appearance: textfield;
 	}
 </style>
