@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { alertStore } from '$lib/stores/alert-store.svelte';
-	import { stringify } from 'querystring';
 	import type { EventHandler } from 'svelte/elements';
 
 	const MAX_DIGIT = 6;
