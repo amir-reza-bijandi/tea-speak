@@ -1,6 +1,15 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import { CpuIcon, LayoutGridIcon, Icon as LucideIcon, MessagesSquareIcon } from '@lucide/svelte';
+	import {
+		Banknote,
+		CpuIcon,
+		LayoutGridIcon,
+		Icon as LucideIcon,
+		MessagesSquareIcon,
+		ShoppingBasket,
+		UserPen,
+		Wallet
+	} from '@lucide/svelte';
 
 	type Item = {
 		label: string;
@@ -22,13 +31,28 @@
 			label: 'سرورها',
 			pathname: '/admin/servers',
 			icon: CpuIcon
+		},
+		{
+			label: 'کیف پول',
+			pathname: '/admin/wallet',
+			icon: Wallet
+		},
+		{
+			label: 'فاکتور',
+			pathname: '/admin/factor',
+			icon: Banknote
+		},
+		{
+			label: 'محصولات',
+			pathname: '/admin/products',
+			icon: ShoppingBasket
 		}
 	] as const satisfies Item[];
 
 	const { children } = $props();
 </script>
 
-<div class="drawer lg:drawer-open">
+<div class="drawer h-screen lg:drawer-open">
 	<input id="my-drawer-4" type="checkbox" class="drawer-toggle" />
 	<div class="drawer-content">
 		<nav class="navbar w-full bg-base-300">
@@ -48,7 +72,7 @@
 			</label>
 			<div class="px-4">Navbar Title</div>
 		</nav>
-		<div class="p-4">Page Content</div>
+		<div class="h-full">{@render children()}</div>
 	</div>
 
 	<div class="drawer-side is-drawer-close:overflow-visible">
@@ -56,24 +80,32 @@
 		<div
 			class="flex min-h-full flex-col items-start bg-base-200 is-drawer-close:w-14 is-drawer-open:w-64"
 		>
-			<ul class="menu w-full grow space-y-2">
-				{#each ITEMS as { label, pathname, icon: Icon }, index}
-					<li>
-						<a
-							href={pathname}
-							class={[
-								'is-drawer-close:tooltip is-drawer-close:tooltip-right',
-								(index === 0
-									? page.url.pathname === pathname
-									: page.url.pathname.includes(pathname)) && 'menu-active'
-							]}
-							data-tip="Homepage"
-						>
-							<Icon class="my-1.5 inline-block size-4" />
-							<span class="is-drawer-close:hidden">{label}</span>
-						</a>
-					</li>
-				{/each}
+			<ul class="menu flex w-full grow flex-col justify-between">
+				<div class="space-y-2">
+					{#each ITEMS as { label, pathname, icon: Icon }, index}
+						<li>
+							<a
+								href={pathname}
+								class={[
+									'is-drawer-close:tooltip is-drawer-close:tooltip-right',
+									(index === 0
+										? page.url.pathname === pathname
+										: page.url.pathname.includes(pathname)) && 'menu-active'
+								]}
+								data-tip="Homepage"
+							>
+								<Icon class="my-1.5 inline-block size-4" />
+								<span class="is-drawer-close:hidden">{label}</span>
+							</a>
+						</li>
+					{/each}
+				</div>
+				<li>
+					<button class="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Homepage">
+						<UserPen class="my-1.5 inline-block size-4" />
+						<span class="is-drawer-close:hidden">پروفایل</span>
+					</button>
+				</li>
 			</ul>
 		</div>
 	</div>
