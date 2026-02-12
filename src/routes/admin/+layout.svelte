@@ -6,6 +6,7 @@
 		LayoutGridIcon,
 		Icon as LucideIcon,
 		MessagesSquareIcon,
+		Plus,
 		ShoppingBasket,
 		UserPen,
 		Wallet
@@ -49,6 +50,10 @@
 		}
 	] as const satisfies Item[];
 
+	function toPersianNumber(str: string) {
+		return str.replace(/\d/g, (d) => '۰۱۲۳۴۵۶۷۸۹'[d]);
+	}
+
 	const { children } = $props();
 </script>
 
@@ -70,7 +75,23 @@
 					></path><path d="M9 4v16"></path><path d="M14 10l2 2l-2 2"></path></svg
 				>
 			</label>
-			<div class="px-4">Navbar Title</div>
+			<div class="flex w-full justify-end gap-4 px-4">
+				<div class="flex items-center gap-1">
+					<Plus class="cursor-pointer text-primary" />
+					<div class="flex items-center gap-1 rounded-xl border border-primary p-1 text-primary">
+						<span class="text-sm">
+							{toPersianNumber('250,000')}
+						</span>
+						<div class="flex text-[10px]">تــومان</div>
+					</div>
+				</div>
+				<button
+					class="cursor-pointer rounded-2xl is-drawer-close:tooltip is-drawer-close:tooltip-right"
+					data-tip="Homepage"
+				>
+					<UserPen class="inline-block size-4" />
+				</button>
+			</div>
 		</nav>
 		<div class="h-full">{@render children()}</div>
 	</div>
@@ -80,32 +101,24 @@
 		<div
 			class="flex min-h-full flex-col items-start bg-base-200 is-drawer-close:w-14 is-drawer-open:w-64"
 		>
-			<ul class="menu flex w-full grow flex-col justify-between">
-				<div class="space-y-2">
-					{#each ITEMS as { label, pathname, icon: Icon }, index}
-						<li>
-							<a
-								href={pathname}
-								class={[
-									'is-drawer-close:tooltip is-drawer-close:tooltip-right',
-									(index === 0
-										? page.url.pathname === pathname
-										: page.url.pathname.includes(pathname)) && 'menu-active'
-								]}
-								data-tip="Homepage"
-							>
-								<Icon class="my-1.5 inline-block size-4" />
-								<span class="is-drawer-close:hidden">{label}</span>
-							</a>
-						</li>
-					{/each}
-				</div>
-				<li>
-					<button class="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Homepage">
-						<UserPen class="my-1.5 inline-block size-4" />
-						<span class="is-drawer-close:hidden">پروفایل</span>
-					</button>
-				</li>
+			<ul class="menu flex w-full grow flex-col gap-1">
+				{#each ITEMS as { label, pathname, icon: Icon }, index}
+					<li>
+						<a
+							href={pathname}
+							class={[
+								'is-drawer-close:tooltip is-drawer-close:tooltip-right',
+								(index === 0
+									? page.url.pathname === pathname
+									: page.url.pathname.includes(pathname)) && 'menu-active'
+							]}
+							data-tip="Homepage"
+						>
+							<Icon class="my-1.5 inline-block size-4" />
+							<span class="is-drawer-close:hidden">{label}</span>
+						</a>
+					</li>
+				{/each}
 			</ul>
 		</div>
 	</div>
