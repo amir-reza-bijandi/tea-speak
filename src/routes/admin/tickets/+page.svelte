@@ -1,9 +1,6 @@
 <script lang="ts">
+	import { toPersianNumber } from '$lib/utilities/to-persian-number';
 	import { MessageSquare } from '@lucide/svelte';
-
-	function toPersianNumber(str: string) {
-		return str.replace(/\d/g, (d) => '۰۱۲۳۴۵۶۷۸۹'[d]);
-	}
 </script>
 
 <div class="flex h-full">

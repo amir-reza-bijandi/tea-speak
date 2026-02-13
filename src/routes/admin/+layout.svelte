@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state';
+	import { toPersianNumber } from '$lib/utilities/to-persian-number';
 	import {
 		Banknote,
 		CpuIcon,
@@ -49,10 +50,6 @@
 			icon: ShoppingBasket
 		}
 	] as const satisfies Item[];
-
-	function toPersianNumber(str: string) {
-		return str.replace(/\d/g, (d) => '۰۱۲۳۴۵۶۷۸۹'[d]);
-	}
 
 	const { children } = $props();
 </script>
