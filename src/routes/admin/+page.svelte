@@ -5,9 +5,11 @@
 </script>
 
 <div class="grid h-full grid-cols-[1fr_auto] gap-4 p-4">
-	<div class="">
+	<div class="grid grid-rows-[auto_1fr]">
 		<div></div>
-		<ServicesTable />
+		<div class="relative">
+			<ServicesTable />
+		</div>
 	</div>
 	<div class="grid w-96 grid-rows-2 gap-2">
 		<ReceentActivities />

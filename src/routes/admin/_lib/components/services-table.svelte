@@ -60,7 +60,7 @@
 	];
 </script>
 
-<div class="card bg-base-300 p-4">
+<div class="card absolute inset-0 bg-base-300 p-4">
 	<span class="mb-4 card-title">سرویس ها</span>
 	<div class="overflow-x-auto">
 		<table class="table-pin-rows table-pin-cols table bg-base-300">
