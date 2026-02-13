@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { page } from '$app/state';
+	import type { LucideIcon } from '$lib/types/general';
 	import { toPersianNumber } from '$lib/utilities/to-persian-number';
 	import {
 		Banknote,
 		CpuIcon,
 		LayoutGridIcon,
-		Icon as LucideIcon,
 		MessagesSquareIcon,
 		Plus,
 		ShoppingBasket,
@@ -16,7 +16,7 @@
 	type Item = {
 		label: string;
 		pathname: string;
-		icon: typeof LucideIcon;
+		icon: LucideIcon;
 	};
 	const ITEMS = [
 		{
@@ -56,7 +56,7 @@
 
 <div class="drawer h-screen lg:drawer-open">
 	<input id="my-drawer-4" type="checkbox" class="drawer-toggle" />
-	<div class="drawer-content">
+	<div class="drawer-content flex flex-col">
 		<nav class="navbar w-full bg-base-300">
 			<label for="my-drawer-4" aria-label="open sidebar" class="btn btn-square btn-ghost">
 				<svg
@@ -90,7 +90,7 @@
 				</button>
 			</div>
 		</nav>
-		<div class="h-full">{@render children()}</div>
+		<div class="flex-1">{@render children()}</div>
 	</div>
 
 	<div class="drawer-side is-drawer-close:overflow-visible">

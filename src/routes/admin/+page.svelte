@@ -1,6 +1,16 @@
-<div class="flex h-full">
-	<div class="h-full w-[70%]">
+<script>
+	import OpenTickets from './_lib/components/open-tickets.svelte';
+	import ReceentActivities from './_lib/components/receent-activities.svelte';
+	import ServicesTable from './_lib/components/services-table.svelte';
+</script>
+
+<div class="grid h-full grid-cols-[1fr_auto] gap-4 p-4">
+	<div class="">
 		<div></div>
+		<ServicesTable />
 	</div>
-	<div class="h-full w-[30%] bg-base-200"></div>
+	<div class="grid w-96 grid-rows-2 gap-2">
+		<ReceentActivities />
+		<OpenTickets />
+	</div>
 </div>

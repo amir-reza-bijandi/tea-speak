@@ -1,3 +1,3 @@
-export function toPersianNumber(str: string) {
-	return str.replace(/\d/g, (d) => '۰۱۲۳۴۵۶۷۸۹'[Number(d)]);
+export function toPersianNumber(input: string | number) {
+	return input.toString().replace(/\d/g, (d) => '۰۱۲۳۴۵۶۷۸۹'[Number(d)]);
 }
