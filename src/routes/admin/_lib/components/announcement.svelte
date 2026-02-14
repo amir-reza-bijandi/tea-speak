@@ -49,7 +49,7 @@
 	{#each ANNOUNCEMENTS as { subtitle, title, type }}
 		<li
 			class={[
-				'flex flex-col items-center rounded-xl py-8 text-lg font-bold',
+				'flex flex-col items-center rounded-2xl py-8 text-lg font-bold',
 				ANNOUNCEMENT_CLASS_MAP[type]
 			]}
 		>

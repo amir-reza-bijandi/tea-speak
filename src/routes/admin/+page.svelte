@@ -8,7 +8,7 @@
 
 <div class="grid h-full grid-cols-[1fr_auto] gap-4 p-4">
 	<div class="grid grid-rows-[auto_1fr] gap-2">
-		<div class="flex">
+		<div class="flex gap-2">
 			<Factor />
 			<Announcement />
 		</div>
