@@ -10,7 +10,10 @@
 			>
 				خرج شده این ماه
 			</span>
-			<span class="flex w-full justify-center text-2xl">{toPersianNumber('46,000')} تومان</span>
+			<span class="flex w-full items-center justify-center gap-1 text-2xl">
+				{toPersianNumber('46,000')}
+				<div class="text-sm">تــومان</div></span
+			>
 		</div>
 		<div class="grid w-full grid-rows-2 gap-2 rounded-2xl bg-base-300 p-4">
 			<span
@@ -27,7 +30,10 @@
 			>
 				موجودی فعلی
 			</span>
-			<span class="flex w-full justify-center text-2xl">{toPersianNumber('250,000')} تومان</span>
+			<span class="flex w-full items-center justify-center gap-1 text-2xl">
+				{toPersianNumber('250,000')}
+				<div class="text-sm">تــومان</div>
+			</span>
 		</div>
 		<button class="btn w-full btn-info">افزایش</button>
 	</div>

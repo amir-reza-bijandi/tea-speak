@@ -74,12 +74,12 @@
 			</label>
 			<div class="flex w-full justify-end gap-4 px-4">
 				<div class="flex items-center gap-1">
-					<Plus class="cursor-pointer text-primary" />
-					<div class="flex items-center gap-1 rounded-xl border border-primary p-1 text-primary">
+					<div class="badge badge-accent">
+						<Plus class=" ml-4 size-5 cursor-pointer" />
 						<span class="text-sm">
 							{toPersianNumber('250,000')}
 						</span>
-						<div class="flex text-[10px]">تــومان</div>
+						<div class="text-[10px]">تــومان</div>
 					</div>
 				</div>
 				<button
